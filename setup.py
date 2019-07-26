@@ -11,6 +11,8 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
 
+    version='0.0.0rc1',
+
     url='https://github.com/gift-surg/puma',
     author='GIFT-Surg Consortium',
 
