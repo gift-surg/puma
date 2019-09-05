@@ -7,7 +7,7 @@ Below is an example pipeline with three runnables that produce, process and cons
 
 ![PUMA example using multiple processes][example]
 
-[example]: resources/example.png
+[example]: ./resources/example.png
 
 ### Why another library for multi-tasking?
 
@@ -25,6 +25,20 @@ PUMA aims at freeing the user to concentrate on writing their application code, 
 * maintaining a single log output for all concurrent tasks.
 
 Thus abstracting and separating multi-tasking concerns naturally yield a loosely-coupled architecture with high cohesion.
+
+### Installation
+
+`pip install git+https://github.com/gift-surg/puma.git#egg=puma`
+
+**or**
+
+Clone this repository and run `pip install .` from within your local copy.
+
+### Quick start
+
+An example demonstrating a data producer-processor-consumer pipeline as shown above is available [here][prod-proc-cons].
+
+[prod-proc-cons]: ./demos/producer_consumer_pipeline/main.py
 
 ### Acknowledgements
 
