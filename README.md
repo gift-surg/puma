@@ -28,7 +28,7 @@ Thus abstracting and separating multi-tasking concerns naturally yield a loosely
 
 ### Installation
 
-`pip install git+https://github.com/gift-surg/puma.git#egg=puma`
+Install directly from GitHub using `pip install git+https://github.com/gift-surg/puma.git#egg=puma`
 
 **or**
 
