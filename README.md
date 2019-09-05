@@ -25,3 +25,16 @@ PUMA aims at freeing the user to concentrate on writing their application code, 
 * maintaining a single log output for all concurrent tasks.
 
 Thus abstracting and separating multi-tasking concerns naturally yield a loosely-coupled architecture with high cohesion.
+
+### Acknowledgements
+
+This project is grateful for the support from
+the [Wellcome Trust][wt],
+the [Engineering and Physical Sciences Research Council (EPSRC)][epsrc],
+and
+the [School of Biomedical Engineering and Imaging Sciences, King's College London][bmeis] at [King's College London (KCL)][kcl].
+
+[wt]: https://wellcome.ac.uk/
+[epsrc]: https://www.epsrc.ac.uk/
+[kcl]: http://www.kcl.ac.uk
+[bmeis]: https://www.kcl.ac.uk/lsm/research/divisions/imaging/index.aspx
