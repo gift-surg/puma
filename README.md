@@ -19,12 +19,12 @@ This is error-prone and makes it easy to write programs that stop (deadlock), wh
 
 [gil]: https://wiki.python.org/moin/GlobalInterpreterLock
 
-PUMA aims at freeing the user to concentrate on writing their multi-tasking application code, by providing a framework that takes care of:
+PUMA aims at freeing the user to concentrate on writing their application code, by providing a framework that takes care of:
 * launching and controlling concurrent tasks,
 * capturing errors from them, and
 * maintaining a single log output for all concurrent tasks.
 
-Separating multi-tasking concerns thus naturally results in a loosely-coupled architecture with high cohesion.
+This separation of multi-tasking concerns naturally results in a loosely-coupled architecture with high cohesion.
 
 ### Installation
 
