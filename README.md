@@ -5,9 +5,9 @@ Each different tasks of an application is implemented as a "runnable" which can 
 PUMA provides buffers for runnables to exchange data, plus mechanisms for sending commands to runnables and receiving error status and logging information from them.
 An example pipeline with three runnables that respectively produce, process and consume data is illustrated below.
 
-![PUMA example using multiple processes][prod-proc-cons-graph]
+![PUMA example using multiple processes][example]
 
-[prod-proc-cons-graph]: ./demos/producer_consumer_pipeline/prod-proc-cons-pipe.png
+[example]: ./demos/producer_consumer_pipeline/illustration.png
 
 ### Why another library for multi-tasking?
 
