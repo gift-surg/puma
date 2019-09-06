@@ -2,7 +2,7 @@ stages:
   - setup
   - test
 
-docker_build:
+setup:docker:linux:
   image: docker:18.09.0
   stage: setup
   variables:
@@ -22,7 +22,7 @@ docker_build:
     - gce
   only:
     changes:
-      - ci/docker/**/*
+      - ci/docker/linux/**/*
 
 .test_base_task: &test_base_task
   script:
