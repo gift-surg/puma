@@ -1,0 +1,16 @@
+stages:
+  - test
+
+.test_base_task: &test_base_task
+  script:
+    - pytest
+
+test:windows:
+  <<: *test_base_task
+  tags:
+    - gift-hopper
+
+test:linux:
+  <<: *test_base_task
+  tags:
+    - gift-little
