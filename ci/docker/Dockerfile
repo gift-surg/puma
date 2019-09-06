@@ -13,3 +13,4 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python get-pip.py
 # Install needed tools
 RUN pip install pytest
+RUN pwd
