@@ -1,7 +1,31 @@
 stages:
+  - setup
   - test
 
+docker_build:
+  image: docker:18.09.0
+  stage: setup
+  variable:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_IMAGE_NAME_CI: ${CI_REGISTRY_IMAGE}/puma-ci:${CI_COMMIT_REF_SLUG}
+  services:
+    - docker:dind
+  script:
+    # Login to our registry
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin ${CI_REGISTRY}
+    - cd ./ci/docker
+    - docker build --target PUMA_CI -t ${DOCKER_IMAGE_NAME_CI} .
+    - docker push ${DOCKER_IMAGE_NAME_CI}
+  tags:
+    - docker
+    - gce
+  only:
+    changes:
+      - ci/docker/**/*
+
 .test_base_task: &test_base_task
+  image: registry.gitlab.com/gift-surg/puma/puma-ci:master
   script:
     - pytest
 
