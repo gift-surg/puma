@@ -5,7 +5,7 @@ stages:
 docker_build:
   image: docker:18.09.0
   stage: setup
-  variable:
+  variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
     DOCKER_IMAGE_NAME_CI: ${CI_REGISTRY_IMAGE}/puma-ci:${CI_COMMIT_REF_SLUG}
