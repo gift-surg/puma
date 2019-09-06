@@ -25,16 +25,17 @@ docker_build:
       - ci/docker/**/*
 
 .test_base_task: &test_base_task
-  image: registry.gitlab.com/gift-surg/puma/puma-ci:2-ensure-docker-build-runs
   script:
     - pytest
 
 test:windows:
   <<: *test_base_task
+  image: registry.gitlab.com/gift-surg/xononav/xononav-ci-tmp-windows:14-12
   tags:
     - gift-hopper
 
 test:linux:
   <<: *test_base_task
+  image: registry.gitlab.com/gift-surg/puma/puma-ci:2-ensure-docker-build-runs
   tags:
     - gift-little
