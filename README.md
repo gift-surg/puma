@@ -34,9 +34,11 @@ Install directly from GitHub using `pip install git+https://github.com/gift-surg
 
 Clone this repository and run `pip install .` from within your local copy.
 
-### Quick start
+### Getting started
 
-An example demonstrating a data producer-processor-consumer pipeline as shown above is available [here][prod-proc-cons].
+Source code demonstrating a data producer-processor-consumer pipeline as illustrated above is available as a [quick-start example][prod-proc-cons].
+
+For more detailed documentation as well as an in-depth discussion, please see the README files within each package.
 
 [prod-proc-cons]: ./demos/producer_consumer_pipeline/main.py
 
