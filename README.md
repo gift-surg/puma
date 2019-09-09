@@ -7,7 +7,7 @@ An example pipeline with three runnables that respectively produce, process and 
 
 ![PUMA example using multiple processes][example]
 
-[example]: ./demos/producer_consumer_pipeline/illustration.png
+[example]: ./resources/example-multi-tasking.png
 
 ### Why another library for multi-tasking?
 
