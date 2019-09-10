@@ -24,3 +24,13 @@ Although errors will be reported when a runnable goes out of context management,
 In this way, errors propagate through the system, ending downstream runners, and are finally handled at the ultimate data destination (which might, for example, be a user interface).
 A runner will only re-raise an error if it cannot pass the error to any of its subscriptions (either because they have all already received `on_complete`, or because of another error).
 * An error arriving on a runnable's input buffer is treated as fatal error and passed out to all subscribers as described above.
+
+### `Multicaster`
+
+`Multicaster` is special `ThreadRunner` that takes data from one input buffer and copies it to multiple output buffers, as illustrated below.
+
+![`Multicaster` for copying data to multiple output buffers][multicaster]
+
+[multicaster]: ../../resources/multicaster.png
+
+This is a reusable system component for when data needs to go to several destinations, for example if it is both processed and visualised.
