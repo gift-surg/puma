@@ -1,4 +1,4 @@
-## Motivation
+## Motivation for buffers
 
 Python provides queues, which communicate data between threads or processes.
 The API for popping an item off a Python queue is a blocking call with a timeout.
@@ -12,16 +12,16 @@ By passing the same "event" object to all the input buffers, polling is avoided,
 
 ![Servicing multiple buffers without polling][buffer-servicing]
 
-[buffer-servicing]: ../../../resources/buffer-without-polling.png
+[buffer-servicing]: ../../resources/buffer-without-polling.png
 
-### Buffer API
+### Buffers
 
-A Buffer is a FIFO class that implements two interfaces, `Publishable` and `Observable`.
+A PUMA `Buffer` is a FIFO class that implements two interfaces, `Publishable` and `Observable`.
 `Publishable` is used to publish data to the buffer, while `Observable` is used to receive that data. 
 
 ![Buffer API for data exchange][buffer-api]
 
-[buffer-api]: ../../../resources/buffer-api.png
+[buffer-api]: ../../resources/buffer-api.png
 
 `Publishable` has a single method, `publish`, which returns a `Publisher`, which is used to push data to the buffer.
 
@@ -34,14 +34,14 @@ Buffers can have multiple publishers but only one subscription.
 
 The two-stage `Publishable` / `Publisher` and `Observable` / `Subscription` interface was adopted to support a context-managed approach to buffer usage, allowing them to be cleanly shut down when no longer required.
 
-When the buffer has no publishers and no subscribers, it launches an internal thread called the "discard thread" which will delete any data in the buffer after a few seconds.
-The reason for this is explained later in this document.
+When the buffer has no publishers and no subscribers, it launches an internal thread called the "discard thread" which will delete any data in the buffer after a few seconds
+(The rationale for this is explained later in this document).
 
 There are two types of buffer which implement the `Buffer` interface, as illustrated in the figure below.
 
-![Buffer class hierarchy][buffer-classes]
+![Buffer class hierarchy][buffers]
 
-[buffer-classes]: ../../../resources/buffer-inheritance.png
+[buffers]: ../../resources/buffer-inheritance.png
 
 ### Discard thread
 

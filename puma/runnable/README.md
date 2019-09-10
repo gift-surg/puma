@@ -3,29 +3,28 @@
 `Runnable` is an abstract base class with a single method, `_execute()`, that must be implemented, although user-defined classes will not typically implement this directly.
 Instead, user-defined runnables will typically derive from one of the standard runnables as shown below, which are described in the following section.
 
-![Standard runners and runnables provided by PUMA][standard-runnables]
+![Runnable and runner hierarchy in PUMA][runners-runnables]
 
-[standard-runnables]: ../../../resources/runners-and-runnables.png
+[runners-runnables]: ../../resources/runners-and-runnables.png
 
 It is the runnable's responsibility to respond to commands as well as to input values.
 As a minimum, it should check for the `Stop` command.
 The standard runnables described below contain a default implementation for this command.
-The [`runner` package][runner] describes how each runnable is executed in the proper context using a `Runner`.
+The [`runner` package][runner] describes how a runner executes a runnable in the proper context, and how errors that occur in runnables are handled.
 
 [runner]: ../runner
 
-### Standard runnables
+### Useful multi-purpose PUMA runnables
 
-This section describes useful general-purpose runnables provided in PUMA.
-The handling of errors that occur in runnable is described in the [`runner` package][runner].
+This section describes useful multi-purpose runnables provided in PUMA.
 
 #### `MultiBufferServicingRunnable`
 
-A user runnable derived from `MultiBufferServicingRunnable` is illustrated below.
+An example user runnable derived from `MultiBufferServicingRunnable` is illustrated below.
 
 ![`MultiBufferServicingRunnable` example][example-multi-buffer-servicing-runnable]
 
-[example-multi-buffer-servicing-runnable]: ../../../resources/MultiBufferServicingRunnable.png
+[example-multi-buffer-servicing-runnable]: ../../resources/MultiBufferServicingRunnable.png
 
 The `MultiBufferServicingRunnable` class handles responding to commands and to input data on buffers, routing this input data to user-defined "subscriptions", each of which processes the relevant data and, in the example shown, outputs the results on an output buffer.
 
@@ -34,7 +33,7 @@ For each input buffer a "subscription" is registered, which handles data arrivin
 As illustrated in the example above, it is legal to configure the runnable such that multiple input buffers are handled by a single subscription.
 The user code can also respond to bespoke commands.
 
-The `MultiBufferServicingRunnable` class contains default handling of the `Stop` command and of error handling.
+The `MultiBufferServicingRunnable` class contains a default handler for the `Stop` command and errors.
 Its `_execute()` method runs until one of the following conditions is met: 
 
 * a `Stop` command is received; or
@@ -49,31 +48,31 @@ This runnable, and hence the other useful runnables described below, also has a 
 
 ![`SingleBufferServicingRunnable` example][example-single-buffer-servicing-runnable]
 
-[example-single-buffer-servicing-runnable]: ../../../resources/SingleBufferServicingRunnable.png
+[example-single-buffer-servicing-runnable]: ../../resources/SingleBufferServicingRunnable.png
 
 #### `CommandDrivenRunnable`
 
-`CommandDrivenRunnable` is simply a special case of `MultiBufferServicingRunnable` which has no input buffers (and hence no output subscriptions), and therefore only responds to commands, as illustrated below.
+`CommandDrivenRunnable` is another special case of `MultiBufferServicingRunnable` which has no input buffers (and hence no output subscriptions), and therefore only responds to commands, as illustrated below.
 
 ![`CommandDrivenRunnable` example][example-command-driven-runnable]
 
-[example-command-driven-runnable]: ../../../resources/CommandDrivenRunnable.png
+[example-command-driven-runnable]: ../../resources/CommandDrivenRunnable.png
 
 In this example, commands are illustrated as producing some output to an output buffer.
-An example might be a data source which is reading data from file, and responds to commands such as `Pause` and `Resume`.
+An example might be a data source which reads data from file, and responds to commands such as `Pause` and `Resume`.
 
 Despite the different naming, there is nothing different about the handling of commands in `CommandDrivenRunnable` as compared to `MultiBufferServicingRunnable` and `SingleBufferServicingRunnable`.
 All three runnables handle the `Stop` command and expect user code to handle other commands. 
 
 ### Command handling in runnables
 
-In order to send commands to a Runnable, the command needs to be wrapped in a `Command` object, serialised, sent on the command buffer, de-serialised, and routed to either the default code (for the `Stop` command) or to user code.
+In order to send a command to a Runnable, the command needs to be wrapped in a `Command` object, serialised, sent on the command buffer, de-serialised, and routed to either the default code (for the `Stop` command) or to user code.
 The command buffer abstracts the switching of the execution context.
-Below is an example using multiple threads.
+Below is an example in a multi-threaded scenario.
 
 ![Runnable command handling in a multi-threaded example][example-runnable-command-handling]
 
-[example-runnable-command-handling]: ../../../resources/run_in_child_context.png
+[example-runnable-command-handling]: ../../resources/run_in_child_context.png
 
 In this example, a user of the runnable (for example, the program's main thread) calls `runnable.pause()`.
 This gets converted to a command which eventually calls the code `self._paused = True` in the runnable, on the runnable's thread (or process if multiple processes were being used instead of threads).
@@ -115,4 +114,4 @@ This provides a timestamp that:
 
 The value is in seconds.
 The "epoch" (zero time) is undefined and might be reset if the computer is rebooted.
-That is, it does not define a point in time; but rather is useful when comparing two subsequent timestamps with a precision of at least one millisecond.
+That is, it does not define a point in time; but rather is useful when comparing two subsequent timestamps with the aforementioned precision.

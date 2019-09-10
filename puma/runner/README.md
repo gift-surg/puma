@@ -1,21 +1,23 @@
 ## Runners
 
+Application code encapsulated in a ["runnable"][runnable] is executed by passing it as a constructor parameter to a "runner".
+As illustrated below, PUMA provides two runner implementations: `ProcessRunner` and `ThreadRunner`.
+
 ![Relation of runners to runnables][runners-runnables]
 
-[runners-runnables]: ../../../resources/runners-and-runnables.png
+[runners-runnables]: ../../resources/runners-and-runnables.png
 
-A [`Runnable`][runnable] is executed by passing it as a constructor parameter to either a `ProcessRunner` or a `ThreadRunner`.
-These "runners" construct the command and status buffers needed for controlling runners and checking their (error) status as illustrated in the [introduction][multitask], and they take on most of the burden of error handling and logging support.
+These "runners" construct the command and status buffers needed for controlling runners and checking their (error) status as illustrated in the [introduction][puma], and they take on most of the burden of error handling and logging support.
 However, the creator of the runnable is still responsible for polling it for errors while it is running.
 
 [runnable]: ../runnable
-[multitask]: ../
+[puma]: ../
 
 ### Error handling in runners and runnables 
 
 The following design principles were adopted when implementing the default error handling in PUMA code, and user code should try to adhere to these same principles:
 
-* User code is responsible for polling every `Runner` it creates for errors, at regular intervals.
+* User code is responsible for polling every runner it creates for errors, at regular intervals.
 Although errors will be reported when a runnable goes out of context management, it is bad practice to rely on this mechanism, because there will be no reason for the program to shut down and the runnable to go out of context if the error is not detected.
 * Errors that occur in a runner or a runnable kill the runner and runnable, in an orderly fashion.
 * Errors are passed to every subscription that has not already received `on_complete`, where they should be sent out on all output buffers whenever possible.
