@@ -42,7 +42,7 @@ For example source code demonstrating a data producer-processor-consumer pipelin
 
 For more detailed documentation as well as an in-depth discussion, please see the README file within each PUMA package.
 
-[example-code]: ./demos/producer_consumer_pipeline/main.py
+[example-code]: demos/simple/main.py
 
 ### Acknowledgements
 

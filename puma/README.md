@@ -26,4 +26,4 @@ For how PUMA works in terms of source code, please see this [simple demo applica
 [runner]: ./runner
 [buffer]: ./buffer
 [environment]: ./environment
-[demo]: ../demos/producer_consumer_pipeline/main.py
+[demo]: ../demos/simple/main.py
