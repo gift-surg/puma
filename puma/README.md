@@ -16,12 +16,12 @@ Arrows indicate the direction of the flow of data on the respective buffers.
 
 [example]: ../resources/example-multi-tasking.png
 
-The application code can be very simply switched between multi-threaded and multi-processed operation, typically by changing a single line of code that sets the [multi-tasking context][context].
+The application code can be very simply switched between multi-threaded and multi-processed operation, typically by changing a single line of code that sets the [multi-tasking operation context][context].
 
 For how PUMA works in source code, please see this [simple demo application][demo].
 
 [runnable]: ./runnable
 [runner]: ./runner
 [buffer]: ./buffer
-[context]: ./context
+[context]: ./operation
 [demo]: ../demos/producer_consumer_pipeline/main.py
