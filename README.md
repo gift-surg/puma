@@ -1,6 +1,6 @@
 ## Python Unified Multi-tasking API (PUMA)
 
-PUMA provides a simultaneous multi-tasking environment that takes care of managing the complexities of executing and controlling multiple threads and/or processes.
+PUMA provides a simultaneous multi-tasking framework that takes care of managing the complexities of executing and controlling multiple threads and/or processes.
 PUMA encapsulates each task of application code as a "runnable" which can be run in a separate process or thread.
 PUMA provides buffers for runnables to exchange data, plus mechanisms for sending commands to runnables and receiving error status and logging information from them.
 
@@ -21,8 +21,9 @@ This is error-prone and makes it easy to write programs that stop (deadlock), wh
 [gil]: https://wiki.python.org/moin/GlobalInterpreterLock
 
 PUMA aims at freeing the user to concentrate on writing their application code, by providing a framework that takes care of:
-* launching and controlling concurrent tasks,
-* capturing errors from them, and
+
+* launching and controlling concurrent tasks;
+* capturing errors from them; and
 * maintaining a single log output for all concurrent tasks.
 
 This separation of multi-tasking concerns naturally results in a loosely-coupled architecture with high cohesion.
@@ -35,13 +36,13 @@ Install directly from GitHub using `pip install git+https://github.com/gift-surg
 
 Clone this repository and run `pip install .` from within your local copy.
 
-### Getting started
+### Getting Started
 
-Source code demonstrating a data producer-processor-consumer pipeline as illustrated above is available as a [quick-start example][prod-proc-cons].
+For example source code demonstrating a data producer-processor-consumer pipeline as illustrated above, please see this [simple demo application][example-code].
 
-For more detailed documentation as well as an in-depth discussion, please see the README files within each package.
+For more detailed documentation as well as an in-depth discussion, please see the README file within each PUMA package.
 
-[prod-proc-cons]: ./demos/producer_consumer_pipeline/main.py
+[example-code]: ./demos/producer_consumer_pipeline/main.py
 
 ### Acknowledgements
 

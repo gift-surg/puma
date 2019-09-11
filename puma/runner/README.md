@@ -27,7 +27,7 @@ A runner will only re-raise an error if it cannot pass the error to any of its s
 
 ### `Multicaster`
 
-`Multicaster` is special `ThreadRunner` that takes data from one input buffer and copies it to multiple output buffers, as illustrated below.
+`Multicaster` is a special `ThreadRunner` that takes data from one input buffer and copies it to multiple output buffers, as illustrated below.
 
 ![`Multicaster` for copying data to multiple output buffers][multicaster]
 
