@@ -1,4 +1,4 @@
-## Summary
+## Logging in a Multi-tasking Environment
 
 Logging is a very useful feature in production code.
 By including logging output, you can:

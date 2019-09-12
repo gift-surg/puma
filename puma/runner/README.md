@@ -1,6 +1,6 @@
 ## Runners
 
-Application code encapsulated in a ["runnable"][runnable] is executed by passing it as a constructor parameter to a "runner".
+Application code encapsulated in a ["runnable"][runnable] is executed by passing the runnable as a constructor parameter to a "runner".
 As illustrated below, PUMA provides two runner implementations: `ProcessRunner` and `ThreadRunner`.
 
 ![Relation of runners to runnables][runners-runnables]

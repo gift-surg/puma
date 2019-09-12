@@ -40,7 +40,7 @@ Clone this repository and run `pip install .` from within your local copy.
 
 For example source code demonstrating a data producer-processor-consumer pipeline as illustrated above, please see this [simple demo application][example-code].
 
-For more detailed documentation as well as an in-depth discussion, please see the README file within each PUMA package.
+Each PUMA package includes a README file that provides a more in-depth discussion of the useful features as well as implementation details.
 
 [example-code]: demos/simple/main.py
 

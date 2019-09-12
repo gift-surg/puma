@@ -1,4 +1,4 @@
-## Motivation for buffers
+## Motivation
 
 Python provides queues, which communicate data between threads or processes.
 The API for popping an item off a Python queue is a blocking call with a timeout.
@@ -14,7 +14,7 @@ By passing the same "event" object to all the input buffers, polling is avoided,
 
 [buffer-servicing]: ../../resources/buffer-without-polling.png
 
-### Buffers
+## Buffers
 
 A PUMA `Buffer` is a FIFO class that implements two interfaces, `Publishable` and `Observable`.
 `Publishable` is used to publish data to the buffer, while `Observable` is used to receive that data. 

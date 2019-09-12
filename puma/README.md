@@ -20,7 +20,8 @@ But the application code can be very simply switched between multi-threaded and 
 
 This loosely-coupled architecture frees the user to concentrate on writing their application code instead of boilerplate code needed for managing the complexities of multi-tasking.
 
-For how PUMA works in terms of source code, please see this [simple demo application][demo].
+This [simple demo application][demo] shows how PUMA works in terms of source code.
+Each package also includes a README that highlights useful features as well as important implementation details.
 
 [runnable]: ./runnable
 [runner]: ./runner
