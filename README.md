@@ -13,11 +13,12 @@ An example pipeline with three runnables that respectively produce, process and 
 
 Python does provide built-in multi-threading and multi-processing facilities.
 Arguably, writing programs with these facilities in Python is more straightforward than many other programming languages.
-But because the [Global Interpreter Lock][gil] effectively limits concurrency when using multiple threads, a user who wants to harness the available computing power for a high-performance application needs to use multiple processes.
+But because the [Global Interpreter Lock][gil] effectively [limits concurrency when using multiple threads][gil-vis], a user who wants to harness the available computing power for a high-performance application needs to use multiple processes.
 However, the common tasks of controlling launched processes, capturing errors from them, and allowing them to write to a single log output require writing boilerplate code.
 This is error-prone and makes it easy to write programs that stop (deadlock), which end without explanation, or whose performance is extremely poor.
 
 [gil]: https://wiki.python.org/moin/GlobalInterpreterLock
+[gil-vis]: http://www.dabeaz.com/blog/2010/01/python-gil-visualized.html
 
 PUMA aims at freeing the user to concentrate on writing their application code, by providing a framework that takes care of:
 * launching and controlling concurrent tasks,
