@@ -7,7 +7,7 @@ It is done by defining the attribute at the class level with one of the scope id
 
 ```python
 class MyClass:
-    _child_scoped_int: int = child_only('_child_counter')
+    _child_scoped_int: int = child_only('_child_scoped_int')
     _custom_scoped_int: int = manually_managed('_custom_scoped_int', ThreadAction.NOT_ALLOWED, ProcessAction.COPIED)
 ```
 
