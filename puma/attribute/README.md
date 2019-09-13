@@ -7,7 +7,7 @@ It is done by defining the attribute at the class level with one of the scope id
 
 ```python
 class MyClass:
-    _scoped_attr_1: MyType = unmanaged('_scoped_attr_1')
+    _scoped_attr_1: int = child_only('_scoped_attr_1')
 ```
 
 The attribute can then be defined (as is ordinarily done) in the constructor (`__init__`).
