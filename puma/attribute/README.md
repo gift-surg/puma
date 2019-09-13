@@ -7,12 +7,15 @@ It is done by defining the attribute at the class level with one of the scope id
 
 ```python
 class MyClass:
-    _scoped_attr_1: int = child_only('_scoped_attr_1')
+    _child_scoped_int: int = child_only('_child_counter')
+    _custom_scoped_int: int = manually_managed('_custom_scoped_int', ThreadAction.NOT_ALLOWED, ProcessAction.COPIED)
 ```
 
 The attribute can then be defined (as is ordinarily done) in the constructor (`__init__`).
-Obviously, when doing this, user code should respect the scope defined earlier, and in applicable cases (documented below) use the appropriate delegation methods.
+Obviously, when doing this, user code should respect the declared scope.
+This means, in some cases, user code will need to use an appropriate delegation method.
 We outline the available attribute scopes in the sections below with examples.
+Wherever applicable, the aforementioned delegation methods are documented and explained as well.
 
 ### `manually_managed`
 
