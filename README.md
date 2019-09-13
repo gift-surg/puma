@@ -1,7 +1,7 @@
 ## Python Unified Multi-tasking API (PUMA)
 
 PUMA provides a simultaneous multi-tasking framework that takes care of managing the complexities of executing and controlling multiple threads and/or processes.
-PUMA encapsulates each task of application code as a "runnable" which can be run in a separate process or thread.
+PUMA abstracts each independent task of an application as a separate execution stream, called a "runnable", which can be run in a separate process or thread.
 PUMA provides buffers for runnables to exchange data, plus mechanisms for sending commands to runnables and receiving error status and logging information from them.
 
 The diagram below illustrates a multi-processing example application with three tasks that respectively produce, process, and consume data.
@@ -14,11 +14,12 @@ The diagram below illustrates a multi-processing example application with three 
 
 Python does provide built-in multi-threading and multi-processing facilities.
 Arguably, writing programs with these facilities in Python is more straightforward than many other programming languages.
-But because the [Global Interpreter Lock][gil] effectively limits concurrency when using multiple threads, a user who wants to harness the available computing power for a high-performance application needs to use multiple processes.
+But because the [Global Interpreter Lock][gil] effectively [limits concurrency when using multiple threads][gil-vis], user code that would like to harness the available computing power for a high-performance application needs to use multiple processes.
 However, the common tasks of controlling launched processes, capturing errors from them, and allowing them to write to a single log output require writing boilerplate code.
 This is error-prone and makes it easy to write programs that stop (deadlock), which end without explanation, or whose performance is extremely poor.
 
 [gil]: https://wiki.python.org/moin/GlobalInterpreterLock
+[gil-vis]: http://www.dabeaz.com/blog/2010/01/python-gil-visualized.html
 
 PUMA aims at freeing the user to concentrate on writing their application code, by providing a framework that takes care of:
 
