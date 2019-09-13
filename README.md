@@ -1,7 +1,7 @@
 ## Python Unified Multi-tasking API (PUMA)
 
 PUMA allows for seamless multi-tasking using processes or threads.
-Each different tasks of an application is implemented as a "runnable" which can be run in a separate process or thread.
+PUMA abstracts each independent task of an application as a separate execution stream, called a "runnable", which can be run in a separate process or thread.
 PUMA provides buffers for runnables to exchange data, plus mechanisms for sending commands to runnables and receiving error status and logging information from them.
 An example pipeline with three runnables that respectively produce, process and consume data is illustrated below.
 
