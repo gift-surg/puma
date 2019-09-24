@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS PUMA_CI
+FROM ubuntu:18.04 AS PUMA_CI_LINUX
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
         tzdata \
