@@ -20,9 +20,9 @@ setup:docker:linux:
   tags:
     - docker
     - gce
-#  only:
-#    changes:
-#      - ci/docker/linux/**/*
+  only:
+    changes:
+      - ci/docker/linux/**/*
 
 .test_base_task: &test_base_task
   script:
