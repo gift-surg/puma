@@ -33,6 +33,18 @@ test:windows:
   tags:
     - gift-hopper
     - windows
+  # This section should ideally be identical to the Linux section. However, we can't yet use Docker
+  # on the Hopper Windows version (1903) due to https://gitlab.com/gitlab-org/gitlab-runner/issues/4396
+  variables:
+    WORKON_HOME: /c/Users/Public/PythonVirtualEnvs
+    VIRTUAL_ENV_NAME: xononav-ci-${CI_JOB_ID}
+  before_script:
+    # Create and activate virtual environment
+    - mkvirtualenv.bat --python=python3.7.1.exe ${VIRTUAL_ENV_NAME}
+    - source ${WORKON_HOME}/${VIRTUAL_ENV_NAME}/Scripts/activate
+  after_script:
+    # Cleanup virtual environment
+    - rmvirtualenv.bat ${VIRTUAL_ENV_NAME}
 
 test:linux:
   <<: *test_base_task
