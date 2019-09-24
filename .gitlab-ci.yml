@@ -48,7 +48,7 @@ test:windows:
 
 test:linux:
   <<: *test_base_task
-  image: registry.gitlab.com/gift-surg/puma/puma-ci:2-ensure-docker-build-runs
+  image: registry.gitlab.com/gift-surg/puma/puma-ci-linux:master
   tags:
     - gift-little
     - docker
