@@ -49,10 +49,11 @@ The multi-processing queue in python (`multiprocessing.Queue`) contains a hidden
 If this pipe is full, the thread blocks until space is available.
 In this situation, a process that has pushed data onto the queue cannot end; the process explicitly [joins on the hidden thread][queue-join] (even though it's a daemon thread), and that blocks forever.
 
-[queue-join]: https://github.com/python/cpython/blob/0461704060474cb358d3495322950c4fd00616a0/Lib/concurrent/futures/process.py#L662
+[queue-join]: https://github.com/python/cpython/blob/0461704060474cb358d3495322950c4fd00616a0/Lib/concurrent/futures/process.py#L662gets 
 
 This situation only happens in practice if the items pushed to the buffer are quite large, or very numerous.
-For a small number of small items, the data is lost in the pipe, but the thread ends cleanly.
+For a small number of small items, if the intended buffer consumer dies and publisher then moves on, the queue eventually gets collected.
+So the thread ends cleanly, only the data is lost in the pipe this way.
 
 Of course, the publisher cannot know if the data is ever going to be popped from the queue; the subscriber may simply be slow, or it may have exited (or died) and the data will never be popped.
 
