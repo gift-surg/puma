@@ -1,11 +1,12 @@
 ## Python Unified Multi-tasking API (PUMA)
 
-PUMA allows for seamless multi-tasking using processes or threads.
+PUMA provides a simultaneous multi-tasking framework that takes care of managing the complexities of executing and controlling multiple threads and/or processes.
 PUMA abstracts each independent task of an application as a separate execution stream, called a "runnable", which can be run in a separate process or thread.
 PUMA provides buffers for runnables to exchange data, plus mechanisms for sending commands to runnables and receiving error status and logging information from them.
-An example pipeline with three runnables that respectively produce, process and consume data is illustrated below.
 
-![PUMA example using multiple processes][example]
+The diagram below illustrates a multi-processing example application with three tasks that respectively produce, process, and consume data.
+
+![PUMA multi-tasking example using multiple processes][example]
 
 [example]: ./resources/example-multi-tasking.png
 
@@ -21,8 +22,9 @@ This is error-prone and makes it easy to write programs that stop (deadlock), wh
 [gil-vis]: http://www.dabeaz.com/blog/2010/01/python-gil-visualized.html
 
 PUMA aims at freeing the user to concentrate on writing their application code, by providing a framework that takes care of:
-* launching and controlling concurrent tasks,
-* capturing errors from them, and
+
+* launching and controlling concurrent tasks;
+* capturing errors from them; and
 * maintaining a single log output for all concurrent tasks.
 
 This separation of multi-tasking concerns naturally results in a loosely-coupled architecture with high cohesion.
@@ -35,11 +37,13 @@ Install directly from GitHub using `pip install git+https://github.com/gift-surg
 
 Clone this repository and run `pip install .` from within your local copy.
 
-### Quick start
+### Getting Started
 
-An example demonstrating a data producer-processor-consumer pipeline as shown above is available [here][prod-proc-cons].
+For example source code demonstrating a data producer-processor-consumer pipeline as illustrated above, please see this [simple demo application][example-code].
 
-[prod-proc-cons]: ./demos/producer_consumer_pipeline/main.py
+Each PUMA package includes a README file that provides a more in-depth discussion of the useful features as well as implementation details.
+
+[example-code]: demos/simple/main.py
 
 ### Acknowledgements
 
