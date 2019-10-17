@@ -47,7 +47,9 @@ There are two types of buffer which implement the `Buffer` interface, as illustr
 
 The multi-processing queue in python (`multiprocessing.Queue`) contains a hidden thread which transports items from the source end of the queue to the "pipe" that transports the data across processes.
 If this pipe is full, the thread blocks until space is available.
-In this situation, a process that has pushed data onto the queue cannot end; the process's garbage collection explicitly joins on the hidden thread (even though it's a daemon thread), and that blocks forever.
+In this situation, a process that has pushed data onto the queue cannot end; the process explicitly [joins on the hidden thread][queue-join] (even though it's a daemon thread), and that blocks forever.
+
+[queue-join]: https://github.com/python/cpython/blob/0461704060474cb358d3495322950c4fd00616a0/Lib/concurrent/futures/process.py#L662
 
 This situation only happens in practice if the items pushed to the buffer are quite large, or very numerous.
 For a small number of small items, the data is lost in the pipe, but the thread ends cleanly.
