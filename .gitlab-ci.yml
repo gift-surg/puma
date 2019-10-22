@@ -48,7 +48,7 @@ test:windows:
 
 test:linux:
   <<: *test_base_task
-  image: registry.gitlab.com/gift-surg/puma/puma-ci-linux:master
+  image: ${CI_REGISTRY_IMAGE}/puma-ci-linux:${CI_COMMIT_REF_SLUG}
   tags:
     - gift-little
     - docker
