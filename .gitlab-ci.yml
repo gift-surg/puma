@@ -25,6 +25,8 @@ setup:docker:linux:
       - ci/docker/linux/**/*
 
 .test_base_task: &test_base_task
+  before_script:
+    - pip install --no-cache-dir .[dev]
   script:
     - pytest
 
