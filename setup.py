@@ -19,4 +19,9 @@ setup(
     packages=[
         'puma',
     ],
+    extras_require={
+        'dev': [
+            'pytest==5.2.1',
+        ],
+    }
 )
