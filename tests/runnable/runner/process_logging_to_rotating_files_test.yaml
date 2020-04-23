@@ -1,0 +1,35 @@
+version: 1
+formatters:
+  simple:
+    format: '%(message)s'
+    datefmt: '%H:%M:%S'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  to_file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: <set_by_test>
+    when: 'S'
+    interval: 5
+    backupCount: 50
+    encoding: utf8
+    delay: <set_by_test>
+    utc: True
+loggers:
+  puma:
+    level: WARN
+    handlers: [console, to_file]
+    propagate: no
+  tests:
+    level: DEBUG
+    handlers: [console, to_file]
+    propagate: no
+root:
+  level: DEBUG # so we catch any accidental use of module-level logging
+  handlers: [console, to_file]
+disable_existing_loggers: False
