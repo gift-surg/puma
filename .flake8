@@ -1,0 +1,5 @@
+[flake8]
+exclude = .bzr,.hg,.git,__pycache__,.tox,puma/_version.py,versioneer.py,setup.py,.eggs
+max-line-length = 180
+application_import_names = puma, tests, # Not exactly what we want, but makes the check compatible with PyCharm's behaviour
+import-order-style = pycharm

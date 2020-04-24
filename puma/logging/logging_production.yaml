@@ -1,0 +1,53 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s,%(msecs)03d %(levelname)-08s [%(processName)-30s - %(thread)06s] %(module_function_line)-70s  - %(message)s'
+    datefmt: '%H:%M:%S'
+  simple_root:
+    format: '%(asctime)s,%(msecs)03d %(levelname)-08s [<MAIN>                         - %(thread)06s] %(module_function_line)-70s  - %(message)s'
+    datefmt: '%H:%M:%S'
+filters:
+  module_function_line:
+    (): puma.logging.extra_filter.ExtraFilter
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+    filters: ['module_function_line']
+  console_root:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple_root
+    stream: ext://sys.stdout
+    filters: ['module_function_line']
+  rotating_files:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filters: ['module_function_line']
+    filename: /var/log/kcl/puma/info.log
+    when: 'midnight'
+    interval: 1
+    backupCount: 30
+    encoding: utf8
+    delay: True # Don't create file until first output
+    utc: True
+loggers:
+  __main__:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  puma:
+    level: WARN
+    handlers: [console, rotating_files]
+    propagate: no
+  tests:
+    level: DEBUG
+    handlers: [console, rotating_files]
+    propagate: no
+root:
+  level: DEBUG # so we catch any accidental use of module-level logging
+  handlers: [console_root, rotating_files]
+disable_existing_loggers: False

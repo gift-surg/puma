@@ -1,0 +1,40 @@
+version: 1
+formatters:
+  simple:
+    format: '%(module_function_line)-70s  - %(message)s'
+  simple_root:
+    format: 'ROOT %(message)s'
+    datefmt: '%H:%M:%S'
+filters:
+  module_function_line:
+    (): puma.logging.extra_filter.ExtraFilter
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+    filters: ['module_function_line']
+  console_root:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple_root
+    stream: ext://sys.stdout
+    filters: ['module_function_line']
+loggers:
+  puma:
+    level: WARN
+    handlers: [console]
+    propagate: no
+  tests:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  level.logger:
+    level: WARN
+    handlers: [console]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console_root]
+disable_existing_loggers: False

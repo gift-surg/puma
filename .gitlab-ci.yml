@@ -1,0 +1,211 @@
+stages:
+  - pre_build
+  - install_dependencies
+  - check
+  - test
+  - demos
+
+variables:
+  TOX_WORK_DIR_ROOT: /d/tmp/tox
+  WINDOWS_WORKON_HOME: /d/tmp/ci-virtualenvs
+
+###########################################
+########        Runner Tags        ########
+###########################################
+.tags_linux_docker_build: &tags_linux_docker_build
+  tags:
+    - docker-build
+    - gift-little
+    - puma
+
+.tags_linux: &tags_linux
+  tags:
+    - docker
+    - gift-little
+    - puma
+
+.tags_windows: &tags_windows
+  tags:
+    - bash
+    - gift-hopper
+    - puma
+    - windows
+
+###########################################
+########  pre_build: docker_build  ########
+###########################################
+.docker_build_base: &docker_build_base
+  stage: pre_build
+  script:
+    # Create task variables
+    - export DOCKERFILE_DIR="./docker-ci/${DOCKER_IMAGE_NAME}"
+    - export DOCKER_IMAGE_FULL_NAME="${CI_REGISTRY_IMAGE}/puma-ci-${DOCKER_IMAGE_NAME}:${CI_COMMIT_REF_SLUG}"
+    # Login to our registry
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin ${CI_REGISTRY}
+    # Only the contents of ${DOCKERFILE_DIR} are sent over to the Docker daemon, so copy scripts directory to Docker directory
+    - cp -r docker-ci/scripts ${DOCKERFILE_DIR}/
+    - cd ${DOCKERFILE_DIR}
+    - docker build -t ${DOCKER_IMAGE_FULL_NAME} .
+    - docker push ${DOCKER_IMAGE_FULL_NAME}
+
+.docker_build_linux_base: &docker_build_linux_base
+  <<: *docker_build_base
+  <<: *tags_linux_docker_build
+
+docker_build:linux:
+  <<: *docker_build_linux_base
+  variables:
+    DOCKER_IMAGE_NAME: linux
+
+.docker_build:windows:  # todo: disabled until docker daemon sporadically issue resolved (see #585, #492, #308)
+  <<: *docker_build_base
+  <<: *tags_windows
+  variables:
+    DOCKER_IMAGE_NAME: windows
+
+###########################################
+########   install_dependencies    ########
+###########################################
+.install_dependencies_base: &install_dependencies_base
+  stage: install_dependencies
+  script:
+    - source ci-scripts/virtualenv-helpers.sh
+    # Create task variables
+    - export DOCKER_SOURCE_IMAGE_FULL_NAME="${CI_REGISTRY_IMAGE}/puma-ci-${SOURCE_DOCKER_IMAGE_NAME:-${DOCKER_IMAGE_NAME}}:${CI_COMMIT_REF_SLUG}"
+    - export DOCKER_FINAL_IMAGE_FULL_NAME="${CI_REGISTRY_IMAGE}/puma-ci-${DOCKER_IMAGE_NAME}-with-dependencies:${CI_PIPELINE_ID}"
+    # Login to our registry
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin ${CI_REGISTRY}
+    # Create temp working directory
+    - export TEMP_DOCKERFILE_DIR=$(mktemp --directory)
+    - export DEPENDENCIES_FILES_DIR="files"
+    # Copy necessary files to temp directory
+    - mkdir -p "${TEMP_DOCKERFILE_DIR}/${DEPENDENCIES_FILES_DIR}"
+    - cp README.md setup.cfg setup.py versioneer.py "${TEMP_DOCKERFILE_DIR}/${DEPENDENCIES_FILES_DIR}"
+    - cd "${TEMP_DOCKERFILE_DIR}"
+    # Create temp Dockerfile
+    - echo -e "FROM ${DOCKER_SOURCE_IMAGE_FULL_NAME}\nCOPY ${DEPENDENCIES_FILES_DIR} /tmp/install/\nRUN pip install /tmp/install[$(determine_pip_extras)] && rm -rf /tmp/install" > Dockerfile
+    # Build and push the image
+    - docker build -t "${DOCKER_FINAL_IMAGE_FULL_NAME}" .
+    - docker push "${DOCKER_FINAL_IMAGE_FULL_NAME}"
+
+install_dependencies:linux: &install_dependencies_linux
+  <<: *install_dependencies_base
+  <<: *tags_linux_docker_build
+  variables:
+    DOCKER_IMAGE_NAME: linux
+
+install_dependencies:windows: &install_dependencies_windows
+  stage: install_dependencies
+  <<: *tags_windows
+  variables:
+    WORKON_HOME: ${WINDOWS_WORKON_HOME}
+  script:
+    - source ci-scripts/virtualenv-helpers.sh
+    - ensure_pipeline_virtualenv_exists
+
+###########################################
+########        base tasks         ########
+###########################################
+.linux_base_task: &linux_base_task
+  <<: *tags_linux
+  image: ${CI_REGISTRY_IMAGE}/puma-ci-linux-with-dependencies:${CI_PIPELINE_ID}
+  needs: ["install_dependencies:linux"]
+  before_script:
+    - source ci-scripts/virtualenv-helpers.sh
+    # Create virtual screen
+    - /sbin/start-stop-daemon --start --quiet --background --exec /usr/bin/Xvfb -- :0 -ac -screen 0 1280x1024x16
+    - export DISPLAY=:0
+    - export MPLBACKEND=agg
+    # Install repo
+    - time pip install --no-cache-dir .[$(determine_pip_extras)]
+
+.windows_base_task: &windows_base_task
+  <<: *tags_windows
+  needs: ["install_dependencies:windows"]
+  variables:
+    WORKON_HOME: ${WINDOWS_WORKON_HOME}
+  before_script:
+    - source ci-scripts/virtualenv-helpers.sh
+    # Ensure Virtual Env for this pipeline exists and is activated
+    - ensure_pipeline_virtualenv_exists
+    - VIRTUALENV_PATH="${WORKON_HOME}/$(determine_pipeline_virtualenv_name)"
+    - source "$(determine_activate_script_path ${VIRTUALENV_PATH})"
+    - export PYTHONPATH="${VIRTUALENV_PATH}/Lib/site-packages/"
+
+###########################################
+########           check           ########
+###########################################
+lint:
+  <<: *linux_base_task
+  stage: check
+  script:
+    - flake8
+
+typings:
+  <<: *linux_base_task
+  stage: check
+  script:
+    - mypy .
+
+###########################################
+########           test            ########
+###########################################
+.test_base_task: &test_base_task
+  stage: test
+  artifacts:
+    paths:
+      - test-report
+    expire_in: 30 days
+    when: always
+
+.linux_test_base_task: &linux_test_base_task
+  <<: *test_base_task
+  variables:
+    TOX_ARGS: --sitepackages
+
+.test: &test
+  script:
+    - tox -e ci --workdir ${TOX_WORK_DIR_ROOT}/${CI_JOB_ID} ${TOX_ARGS}
+  after_script:
+    - echo "Test report at https://gift-surg.gitlab.io/-/Puma/-/jobs/${CI_JOB_ID}/artifacts/test-report/index.html"
+
+.test_slow: &test_slow
+  <<: *test
+  script:
+    - tox -e ci-slow --workdir ${TOX_WORK_DIR_ROOT}/${CI_JOB_ID} ${TOX_ARGS}
+
+test:linux:
+  <<: *linux_base_task
+  <<: *linux_test_base_task
+  <<: *test
+
+test:slow:linux:
+  <<: *linux_base_task
+  <<: *linux_test_base_task
+  <<: *test_slow
+
+test:windows:
+  <<: *test
+  <<: *test_base_task
+  <<: *windows_base_task
+
+test:slow:windows:
+  <<: *test_slow
+  <<: *test_base_task
+  <<: *windows_base_task
+
+###########################################
+########           demos           ########
+###########################################
+.run_demos: &run_demos
+  stage: demos
+  script:
+    - ci-scripts/ensure-demos-run.sh
+
+run_demos:linux:
+  <<: *linux_base_task
+  <<: *run_demos
+
+run_demos:windows:
+  <<: *windows_base_task
+  <<: *run_demos
