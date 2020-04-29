@@ -10,7 +10,7 @@ The diagram below illustrates a multi-processing example application with three 
 
 [example]: ./resources/example-multi-tasking.png
 
-### Why another library for multi-tasking?
+### Why a separate library for multi-tasking?
 
 Python does provide built-in multi-threading and multi-processing facilities.
 Arguably, writing programs with these facilities in Python is more straightforward than many other programming languages.
@@ -28,6 +28,19 @@ PUMA aims at freeing the user to concentrate on writing their application code, 
 * maintaining a single log output for all concurrent tasks.
 
 This separation of multi-tasking concerns naturally results in a loosely-coupled architecture with high cohesion.
+
+### Features ###
+The main features provided by PUMA are:
+ * [Runnables][runnable] - Runnables allow concurrent code to be written that is able to run without changes no matter what [environment][environment] (threads or processes) it is executed in.
+ * [Buffers][buffer] - Buffers allow data to be passed between Runnables  
+ * [ScopedAttributes][attribute] - ScopedAttributes ensure that attributes behave consistently no matter the environment (threads or processes) or platform (Windows, Linux or Mac)
+ * [Logging][logging] - Logging provides a simple to use implementation of the challenging task of successfully logging across threads and processes.  
+
+[runnable]: puma/runnable
+[environment]: puma/environment
+[buffer]: puma/buffer
+[attribute]: puma/attribute
+[logging]: puma/logging
 
 ### Installation
 
