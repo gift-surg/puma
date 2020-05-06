@@ -1,8 +1,8 @@
 from unittest import TestCase
 
 from puma.context import ensure_used_within_context_manager
+from puma.helpers.testing.mixin import NotATestCase
 from puma.helpers.timer import Timer
-from tests.mixin import NotATestCase
 
 
 class TestTimer(Timer, NotATestCase):

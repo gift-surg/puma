@@ -4,11 +4,11 @@ from unittest import TestCase
 
 from puma.attribute import child_only, child_scope_value
 from puma.environment import ProcessEnvironment, ThreadEnvironment
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable import CommandDrivenRunnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from puma.runnable.proxy import Proxy
 from puma.runnable.remote_execution import BaseRemoteObjectReference
-from tests.parameterized import parameterized
 from tests.runnable.proxy.proxy_complex_test_case import ComplexObjectProxyTestCase
 from tests.runnable.proxy.proxy_creation_test import get_all_items_from_buffer
 from tests.runnable.proxy.proxy_error_test_case import RaisesErrorProxyTestCase

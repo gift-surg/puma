@@ -7,10 +7,10 @@ from unittest import TestCase
 from puma.attribute import child_only, child_scope_value
 from puma.buffer import Observable, Subscriber
 from puma.helpers.string import safe_str
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable import SingleBufferServicingRunnable
 from tests.buffer._parameterisation import envs
-from tests.logging.capture_logs import CaptureLogs
-from tests.parameterized import parameterized
 from tests.runnable.test_support.parameterisation import RunnerTestParams
 from tests.runnable.test_support.publishing_runnable import PublishingRunnable, PublishingRunnableMode
 from tests.runnable.test_support.testval import TestVal

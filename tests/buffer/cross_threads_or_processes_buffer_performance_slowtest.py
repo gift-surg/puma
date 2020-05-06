@@ -9,9 +9,9 @@ from unittest import TestCase
 from puma.buffer import Buffer, TraceableException
 from puma.buffer.implementation.managed_queues import ManagedQueueTypes
 from puma.helpers.string import safe_str
+from puma.helpers.testing.parameterized import parameterized
 from puma.primitives import AutoResetEvent, EventType
 from tests.buffer._parameterisation import BufferTestEnvironment, BufferTestParams, envs
-from tests.parameterized import parameterized
 
 BUFFER_SIZE = 100
 COUNT = BUFFER_SIZE * 3

@@ -3,12 +3,12 @@ from time import sleep
 from typing import Callable, Optional
 
 from puma.context import ContextManager, Exit_1, Exit_2, Exit_3, MustBeContextManagedError, must_be_context_managed
+from puma.helpers.testing.parameterized import NamedTestParameters
 from puma.runnable import CommandDrivenRunnable, Runnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from puma.runnable.message import StatusMessage
 from puma.runnable.runner import Runner
 from puma.scope_id import get_current_scope_id
-from tests.parameterized import NamedTestParameters
 
 
 class RunnableTestClass(CommandDrivenRunnable):

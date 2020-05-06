@@ -3,7 +3,7 @@ from typing import Any, Callable, Sequence
 from parameterized import parameterized as parameterized_lib
 from parameterized.parameterized import param, string_types
 
-from tests.parameterized.namedtestparameters import NamedTestParameters
+from puma.helpers.testing.parameterized.namedtestparameters import NamedTestParameters
 
 
 def parameterized(test_case_parameters: Sequence[NamedTestParameters]) -> Any:

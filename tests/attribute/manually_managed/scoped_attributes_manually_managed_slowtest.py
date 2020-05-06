@@ -3,10 +3,10 @@ from unittest import TestCase
 from puma.attribute.attribute.sharing_attribute_between_scopes_not_allowed_error import SharingAttributeBetweenProcessesNotAllowedError, \
     SharingAttributeBetweenThreadsNotAllowedError
 from puma.environment import ProcessEnvironment, ThreadEnvironment
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable.remote_execution import CannotSetRemoteAttributeError
 from tests.attribute.manually_managed import InvalidParams, ProcessCopiedTestRunnable, ProcessNotAllowedTestRunnable, ProcessSetToNoneTestRunnable, ThreadCopiedTestRunnable, \
     ThreadNotAllowedTestRunnable, ThreadSharedTestRunnable, ValidParams
-from tests.parameterized import parameterized
 
 valid_runnables = [
     ValidParams(ThreadEnvironment(), ThreadSharedTestRunnable(), 510),

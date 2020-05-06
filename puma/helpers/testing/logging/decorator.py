@@ -3,8 +3,8 @@ from typing import Any, Callable, TypeVar, Union, overload
 from unittest import TestCase
 
 from puma.context import Exit_1, Exit_2, Exit_3
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel
-from tests.logging.capture_logs import CaptureLogs
 
 RT = TypeVar('RT')  # _return type
 

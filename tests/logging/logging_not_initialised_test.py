@@ -1,8 +1,8 @@
 import logging
 from unittest import TestCase
 
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel, Logging
-from tests.logging.capture_logs import CaptureLogs
 
 
 # A partner to LoggingUtilsTest, but LoggingUtils.init_logging is never called, since calling it and then calling reset_logging doesn't

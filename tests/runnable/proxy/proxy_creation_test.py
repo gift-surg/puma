@@ -8,10 +8,10 @@ from unittest import TestCase
 from puma.attribute import ProcessAction, ThreadAction, manually_managed
 from puma.attribute.mixin import ScopedAttributesCompatibilityMixin
 from puma.buffer import Buffer, MultiThreadBuffer
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel
 from puma.runnable.proxy import Proxy
 from puma.runnable.remote_execution import BaseRemoteObjectReference
-from tests.logging.capture_logs import CaptureLogs
 from tests.runnable.proxy.proxy_test_helpers import AllMethodsReturnNone, CallResponse, HasMethodThatReturnsValue, Parent, ParentImpl, SendsCallsToBufferImpl
 
 

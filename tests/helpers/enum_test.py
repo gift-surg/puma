@@ -3,8 +3,8 @@ from typing import Any, Type
 from unittest import TestCase
 
 from puma.helpers.enum import EnumMemberError, ensure_enum_member
-from tests.mixin.not_a_test_case_enum import NotATestCaseEnum
-from tests.parameterized import NamedTestParameters, parameterized
+from puma.helpers.testing.mixin import NotATestCaseEnum
+from puma.helpers.testing.parameterized import NamedTestParameters, parameterized
 
 
 class TestEnum(NotATestCaseEnum):

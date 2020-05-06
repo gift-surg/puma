@@ -5,11 +5,11 @@ from typing import List, Optional, TypeVar, no_type_check
 from unittest import TestCase
 
 from puma.buffer import MultiThreadBuffer, Observable, Publisher
+from puma.helpers.testing.logging.decorator import assert_no_warnings_or_errors_logged
 from puma.multicaster.multicaster import Multicaster
 from puma.primitives import AutoResetEvent
 from puma.unexpected_situation_action import UnexpectedSituationAction
 from tests.buffer.test_support.buffer_api_test_support import TestSubscriber, receive_all
-from tests.test_logging_helpers import assert_no_warnings_or_errors_logged
 
 logger = logging.getLogger(__name__)
 

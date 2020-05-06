@@ -3,7 +3,7 @@ from abc import abstractmethod
 from typing import Any, List, TypeVar
 
 from puma.environment import Environment, ProcessEnvironment, ThreadEnvironment
-from tests.parameterized.namedtestparameters import NamedTestParameters
+from puma.helpers.testing.parameterized import NamedTestParameters
 
 Type = TypeVar("Type")
 T = TypeVar("T")

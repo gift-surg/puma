@@ -3,10 +3,10 @@ from typing import List, Optional, TypeVar
 from unittest import TestCase
 
 from puma.buffer import Publishable, Publisher, Subscriber, Subscription
+from puma.helpers.testing.mixin import NotATestCase
 from puma.primitives import AutoResetEvent
 from puma.timeouts import TIMEOUT_NO_WAIT
 from puma.unexpected_situation_action import UnexpectedSituationAction
-from tests.mixin import NotATestCase
 
 Type = TypeVar("Type")
 

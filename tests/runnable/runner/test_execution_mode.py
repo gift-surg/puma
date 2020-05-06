@@ -1,6 +1,6 @@
 from enum import auto, unique
 
-from tests.mixin.not_a_test_case_enum import NotATestCaseEnum
+from puma.helpers.testing.mixin import NotATestCaseEnum
 
 
 @unique

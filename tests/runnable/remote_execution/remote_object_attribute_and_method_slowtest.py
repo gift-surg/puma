@@ -4,12 +4,12 @@ from typing import Optional
 from unittest import TestCase
 
 from puma.environment import ThreadEnvironment
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel, Logging
 from puma.runnable import CommandDrivenRunnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from puma.runnable.message import CommandMessage, RunInChildScopeCommandMessage
 from tests.helpers.timer.test_timer import TestTimer
-from tests.logging.capture_logs import CaptureLogs
 
 RUNNABLE_SLEEP_DURATION = 1.1
 SLEEP_COMPARE = RUNNABLE_SLEEP_DURATION - 0.1

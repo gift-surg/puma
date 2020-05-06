@@ -6,8 +6,8 @@ from threading import Thread
 from typing import Callable
 from unittest import TestCase
 
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel, Logging
-from tests.logging.capture_logs import CaptureLogs
 from tests.logging.capture_logs_test_secondary import log_in_secondary_module
 
 

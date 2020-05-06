@@ -1,5 +1,5 @@
 from puma.environment import Environment
-from tests.parameterized import NamedTestParameters
+from puma.helpers.testing.parameterized import NamedTestParameters
 from tests.runnable.proxy.proxy_test_helpers import EnvironmentVerifier
 
 

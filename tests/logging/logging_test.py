@@ -6,8 +6,8 @@ from unittest import TestCase
 
 import yaml
 
+from puma.helpers.testing.logging.capture_logs import CaptureLogs, CapturedRecords
 from puma.logging import LogLevel, Logging
-from tests.logging.capture_logs import CaptureLogs, CapturedRecords
 
 
 # Basic tests of LoggingUtils.

@@ -8,11 +8,11 @@ from unittest import TestCase
 
 from puma.attribute import child_only, copied, unmanaged
 from puma.buffer import MultiThreadBuffer, Observable, Publishable, Publisher, Subscriber, Subscription
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable import MultiBufferServicingRunnable
 from puma.runnable.message import CommandMessage
 from puma.runnable.runner import Runner, ThreadRunner
 from tests.github_issue_11_quickfix import skip_on_windows_until_github_issue_11_is_resolved
-from tests.parameterized import parameterized
 from tests.runnable.test_support.parameterisation import RunnerTestParams, envs
 from tests.test_case_helpers import assertEmpty, calc_lenient_interval_stats, calculate_intervals
 

@@ -1,10 +1,10 @@
 from time import monotonic
 from unittest import TestCase
 
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable.remote_execution import CannotSetRemoteAttributeError
 from puma.runnable.runner import ProcessRunner, ThreadRunner
 from puma.scope_id import get_current_scope_id
-from tests.parameterized import parameterized
 from tests.runnable.decorator.run_in_child_scope_run_test_helpers import Parameters, RunnableTestClassChildStatusMessage, RunnableTestClassStatusMessage, \
     RunnableTestComplexClass, RunnableTestSubClass
 

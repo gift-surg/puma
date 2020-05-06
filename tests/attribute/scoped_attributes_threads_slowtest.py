@@ -5,12 +5,12 @@ from puma.attribute import ProcessAction, ThreadAction, copied, factory, manuall
 from puma.attribute.attribute.sharing_attribute_between_scopes_not_allowed_error import SharingAttributeBetweenScopesNotAllowedError
 from puma.attribute.mixin import ScopedAttributesCompatibilityMixin, ScopedAttributesMixin
 from puma.environment import Environment, ProcessEnvironment, ThreadEnvironment
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable import Runnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from puma.scope_id import get_current_scope_id
 from tests.attribute.scoped_attributes_test_helper import ScopedAttributesTestRunnable
 from tests.environment.parameterisation import EnvironmentTestParameters, environments
-from tests.parameterized import parameterized
 
 
 class ScopedAttributesThreadsSlowTest(TestCase):

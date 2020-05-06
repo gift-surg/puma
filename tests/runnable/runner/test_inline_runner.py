@@ -1,10 +1,10 @@
 from typing import Any, Optional, Set
 
 from puma.context import ensure_used_within_context_manager
+from puma.helpers.testing.mixin import NotATestCase
 from puma.runnable.message import StatusMessage
 from tests.buffer.test_support.single_threaded_primitive_types import InlineRunner
 from tests.buffer.test_support.test_inline_buffer import TestInlineBuffer
-from tests.mixin import NotATestCase
 from tests.runnable.runner.test_inline_runnable import TestInlineRunnable
 
 TST_BUFFER_SIZES = 13
