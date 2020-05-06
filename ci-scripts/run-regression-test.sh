@@ -17,7 +17,7 @@ do
     echo -e "${BLUE}Running regression test: ${executable}${NC}"
     set +e
     executable_dir=$(dirname ${executable})
-    RESPONSE=$(timeout 180 sh -c "cd ${executable_dir} && ./test.sh" 2>&1)
+    RESPONSE=$(timeout 180 bash -c "cd ${executable_dir} && bash ./test.sh" 2>&1)
     STATUS=$?
     echo "${RESPONSE}"
     set -e
