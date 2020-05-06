@@ -1,12 +1,13 @@
-from typing import Generic, TypeVar, cast
+from typing import Generic, TypeVar, cast, Callable, Any
 
 from puma.attribute import copied, scope_specific
 from puma.attribute.mixin import ScopedAttributesCompatibilityMixin
 from puma.buffer import Buffer
 from puma.runnable.remote_execution import RemoteObjectMethod, RemoteObjectStatusBufferSubscriptionManager
-from puma.runnable.remote_execution.remote_object_attribute_and_method import MethodType, REMOTE_METHOD_CALL_DEFAULT_TIMEOUT
+from puma.runnable.remote_execution.remote_object_attribute_and_method import REMOTE_METHOD_CALL_DEFAULT_TIMEOUT
 
 T = TypeVar("T")
+MethodType = TypeVar("MethodType", bound=Callable[..., Any])
 
 
 class BaseRemoteObjectReference(Generic[T], ScopedAttributesCompatibilityMixin):
