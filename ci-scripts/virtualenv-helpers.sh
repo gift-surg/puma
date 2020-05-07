@@ -40,7 +40,7 @@ function determine_base_virtualenv_name {
   # Detemines a VirtualEnv's name based on the dependencies defined in setup.py
 
   # List the files that influence the contents of the base virtualenv
-  files_to_consider=(setup.cfg setup.py ci-scripts/virtualenv-helpers.sh)
+  files_to_consider=(MANIFEST.in setup.cfg setup.py ci-scripts/virtualenv-helpers.sh)
   # Generate an MD5 hash of each of these files - any changes in file content will cause the hash to change
   file_hashes=$(md5sum "${files_to_consider[@]}")
   # Combine the hashes of all files into a single "summary" hash
