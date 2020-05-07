@@ -1,3 +1,6 @@
 include versioneer.py
 include puma/_version.py
 include puma/py.typed
+
+include puma/logging/logging_dev.yaml
+include puma/logging/logging_production.yaml
