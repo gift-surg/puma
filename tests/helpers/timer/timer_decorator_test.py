@@ -5,10 +5,10 @@ from time import sleep
 from typing import Callable
 from unittest import TestCase, mock
 
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.helpers.timer import time
 from puma.logging import LogLevel, Logging
 from tests.github_issue_11_quickfix import skip_on_windows_until_github_issue_11_is_resolved
-from tests.logging.capture_logs import CaptureLogs
 
 logger = logging.getLogger(__name__)
 

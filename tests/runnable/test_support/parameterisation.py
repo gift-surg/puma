@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import Any, List, Union
 
 from puma.environment import ProcessEnvironment, ThreadEnvironment
-from tests.parameterized.namedtestparameters import NamedTestParameters
+from puma.helpers.testing.parameterized import NamedTestParameters
 
 
 class RunnerTestEnvironment:

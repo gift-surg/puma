@@ -4,11 +4,11 @@ from typing import TypeVar
 from unittest import TestCase
 
 from puma.buffer import MultiThreadBuffer
+from puma.helpers.testing.logging.decorator import assert_no_warnings_or_errors_logged
 from puma.runnable.runner import ThreadRunner
 from tests.runnable.test_support.publishing_runnable import PublishingRunnable
 from tests.runnable.test_support.testval import TestVal
 from tests.runnable.test_support.validating_multiple_subscriptions_runnable import ValidatingMultipleSubscriptionsRunnable
-from tests.test_logging_helpers import assert_no_warnings_or_errors_logged
 
 Type = TypeVar("Type")
 

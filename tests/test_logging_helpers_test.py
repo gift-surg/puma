@@ -1,7 +1,7 @@
 import logging
 from unittest import TestCase
 
-from tests.test_logging_helpers import assert_no_warnings_or_errors_logged
+from puma.helpers.testing.logging.decorator import assert_no_warnings_or_errors_logged
 
 logger = logging.getLogger(__name__)
 

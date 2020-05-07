@@ -1,8 +1,8 @@
 from typing import TypeVar
 
 from puma.context import Exit_1, Exit_2, Exit_3
+from puma.helpers.testing.mixin import NotATestCase
 from tests.buffer.test_support.single_threaded_primitive_types import InlineBuffer
-from tests.mixin import NotATestCase
 
 Type = TypeVar("Type")
 

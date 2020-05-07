@@ -2,10 +2,10 @@ import logging
 import time
 
 from puma.attribute import child_only, child_scope_value
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
+from puma.helpers.testing.mixin import NotATestCase
 from puma.runnable import Runnable
 from puma.runnable.runner import ProcessRunner
-from tests.logging.capture_logs import CaptureLogs
-from tests.mixin import NotATestCase
 from tests.runnable.test_support.parameterisation import ProcessRunnerTestEnvironment
 
 

@@ -6,13 +6,13 @@ from puma.attribute.attribute.attribute_accessed_from_invalid_scope_error import
 from puma.attribute.mixin import ScopedAttributesCompatibilityMixin
 from puma.environment import ProcessEnvironment
 from puma.helpers.os import is_windows
+from puma.helpers.testing.parameterized import parameterized
 from puma.primitives import ThreadLock
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from tests.attribute import get_access_child_from_parent_message, get_access_parent_from_child_message
 from tests.attribute.scoped_attributes_test_helper import PropertiesDefinedAtClassLevel, PropertiesDefinedInInit, ScopedAttributesTestRunnable, \
     UnpickleablePropertiesDefinedAtClassLevel, UnpickleablePropertiesDefinedInInit
 from tests.environment.parameterisation import EnvironmentTestParameters, environments
-from tests.parameterized import parameterized
 
 
 class ScopedAttributesSlowCompatibilityTest(TestCase):

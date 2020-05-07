@@ -2,10 +2,10 @@ from unittest import TestCase
 
 from puma.attribute import copied
 from puma.context import ContextManager, MustBeContextManagedError, ensure_used_within_context_manager, must_be_context_managed
+from puma.helpers.testing.mixin import NotATestCase
 from puma.runnable import CommandDrivenRunnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from puma.runnable.runner import ProcessRunner
-from tests.mixin import NotATestCase
 
 
 class ContextManagementDecoratorSlowTest(TestCase):

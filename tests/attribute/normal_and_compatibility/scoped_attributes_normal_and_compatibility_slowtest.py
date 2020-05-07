@@ -4,6 +4,7 @@ from typing import Any, Callable, Generic, TypeVar
 from puma.attribute import copied
 from puma.environment import ProcessEnvironment
 from puma.helpers.os import is_windows
+from puma.helpers.testing.parameterized import parameterized
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
 from tests.attribute.normal_and_compatibility.properties_defined_at_class_level_and_unpickleable_properties_defined_in_init import \
     ScopedAttributesCompatPropertiesDefinedAtClassLevelAndUnpickleablePropertiesDefinedInInitTestCase, \
@@ -17,7 +18,6 @@ from tests.attribute.normal_and_compatibility.scoped_attributes_test_case import
 from tests.attribute.normal_and_compatibility.verification_interface import VerificationInterface
 from tests.attribute.scoped_attributes_test_helper import ScopedAttributesTestRunnable
 from tests.environment.parameterisation import EnvironmentTestParameters, environments
-from tests.parameterized import parameterized
 
 T = TypeVar("T")
 

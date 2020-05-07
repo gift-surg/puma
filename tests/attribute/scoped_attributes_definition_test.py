@@ -4,10 +4,10 @@ from puma.attribute import child_only, copied, factory, parent_only, per_scope_v
 from puma.attribute.attribute.attribute_accessed_from_invalid_scope_error import AttributeAccessedFromInvalidScopeError
 from puma.attribute.mixin import ScopedAttributesMixin
 from puma.attribute.mixin.scoped_attributes_base_mixin import InvalidAttributeNameError
+from puma.helpers.testing.logging.capture_logs import CaptureLogs
 from puma.logging import LogLevel
 from tests.attribute import get_access_child_from_parent_message
 from tests.attribute.normal_and_compatibility.scoped_attributes_test_case import ScopedAttributesTestCase
-from tests.logging.capture_logs import CaptureLogs
 
 
 class ScopedAttributesDefinitionTest(ScopedAttributesTestCase):

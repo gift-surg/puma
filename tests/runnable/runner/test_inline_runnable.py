@@ -1,6 +1,6 @@
 from puma.attribute import copied
+from puma.helpers.testing.mixin import NotATestCase
 from puma.runnable import Runnable
-from tests.mixin import NotATestCase
 
 
 class TestInlineRunnable(Runnable, NotATestCase):

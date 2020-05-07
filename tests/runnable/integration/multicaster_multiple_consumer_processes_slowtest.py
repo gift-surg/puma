@@ -4,13 +4,13 @@ from typing import TypeVar
 from unittest import TestCase
 
 from puma.buffer import MultiProcessBuffer
+from puma.helpers.testing.logging.decorator import assert_no_warnings_or_errors_logged
 from puma.multicaster.multicaster import Multicaster
 from puma.runnable.runner import ProcessRunner
 from puma.unexpected_situation_action import UnexpectedSituationAction
 from tests.runnable.test_support.publishing_runnable import PublishingRunnable
 from tests.runnable.test_support.testval import TestVal
 from tests.runnable.test_support.validating_single_subscription_runnable import ValidatingSingleSubscriptionRunnable
-from tests.test_logging_helpers import assert_no_warnings_or_errors_logged
 
 Type = TypeVar("Type")
 

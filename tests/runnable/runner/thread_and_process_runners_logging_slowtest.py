@@ -9,12 +9,12 @@ from unittest import TestCase
 import yaml
 
 from puma.attribute import copied
+from puma.helpers.testing.logging.capture_logs import CaptureLogs, CapturedRecords
+from puma.helpers.testing.mixin import NotATestCase
+from puma.helpers.testing.parameterized import parameterized
 from puma.logging import LogLevel, Logging, ManagedProcessLogQueue
 from puma.runnable import Runnable
 from puma.runnable.runner import ProcessRunner
-from tests.logging.capture_logs import CaptureLogs, CapturedRecords
-from tests.mixin import NotATestCase
-from tests.parameterized import parameterized
 from tests.runnable.runner.test_logging_runnable import TestLoggingRunnable
 from tests.runnable.test_support.parameterisation import ProcessRunnerTestEnvironment, RunnerTestParams, envs
 

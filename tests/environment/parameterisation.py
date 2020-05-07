@@ -1,5 +1,5 @@
 from puma.environment import Environment, ProcessEnvironment, ThreadEnvironment
-from tests.parameterized import NamedTestParameters
+from puma.helpers.testing.parameterized import NamedTestParameters
 
 
 class EnvironmentTestParameters(NamedTestParameters):

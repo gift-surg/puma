@@ -1,4 +1,4 @@
-from tests.mixin import NotATestCase
+from puma.helpers.testing.mixin import NotATestCase
 
 
 class TestVal(NotATestCase):

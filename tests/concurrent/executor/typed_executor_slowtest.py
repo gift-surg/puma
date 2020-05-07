@@ -4,9 +4,9 @@ from typing import Callable, Iterable, List
 from unittest import TestCase
 
 from puma.concurrent.executor.typed_executor import TypedExecutor, TypedProcessPoolExecutor, TypedThreadPoolExecutor
+from puma.helpers.testing.parameterized import NamedTestParameters, parameterized
 from tests.concurrent.executor.typed_executor_slowtest_methods import DELAY_SLOW, fast_method, method0, method1, method10, method2, method3, method4, method5, method6, \
     method7, method8, method9
-from tests.parameterized import NamedTestParameters, parameterized
 
 
 class TypedExecutorSlowTestParams(NamedTestParameters):

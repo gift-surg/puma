@@ -2,10 +2,10 @@ import logging
 from typing import Optional
 
 from puma.attribute import copied, unmanaged
+from puma.helpers.testing.mixin import NotATestCase
 from puma.primitives import EventType
 from puma.runnable import Runnable
 from puma.runnable.runner.runner import DEFAULT_FINAL_JOIN_TIMEOUT
-from tests.mixin import NotATestCase
 from tests.runnable.runner.test_execution_mode import TestExecutionMode
 
 logger = logging.getLogger(__name__)

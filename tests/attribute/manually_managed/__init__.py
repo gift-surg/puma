@@ -6,9 +6,9 @@ from puma.attribute import ProcessAction, ThreadAction, copied, manually_managed
 from puma.attribute.attribute.sharing_attribute_between_scopes_not_allowed_error import SharingAttributeBetweenScopesNotAllowedError
 from puma.attribute.mixin import ScopedAttributesMixin
 from puma.environment import Environment
+from puma.helpers.testing.parameterized import NamedTestParameters
 from puma.runnable import CommandDrivenRunnable
 from puma.runnable.decorator.run_in_child_scope import run_in_child_scope
-from tests.parameterized import NamedTestParameters
 
 
 class ValidParams(NamedTestParameters):
