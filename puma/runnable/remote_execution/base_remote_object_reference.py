@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, cast, Callable, Any
+from typing import Any, Callable, Generic, TypeVar, cast
 
 from puma.attribute import copied, scope_specific
 from puma.attribute.mixin import ScopedAttributesCompatibilityMixin
