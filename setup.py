@@ -49,10 +49,7 @@ setup(
     url='https://github.com/gift-surg/puma',
     author='GIFT-Surg Consortium',
 
-    packages=find_packages(),
-    # packages=[
-    #     'puma'
-    # ],
+    packages=find_packages(exclude=['tests']),
 
     cmdclass=versioneer.get_cmdclass(),
     include_package_data=True,
