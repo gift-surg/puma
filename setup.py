@@ -9,7 +9,7 @@ import versioneer
 dev_deps = [
     "flake8==3.6.0",
     "flake8-import-order==0.18.1",
-    "mypy==0.641",
+    "mypy==0.770",
     "parameterized==0.6.1",
     "pprofile==2.0.2",
     "pytest==4.0.0",
@@ -54,7 +54,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     include_package_data=True,
     install_requires=[
-        "PyYAML==5.1.1",
+        "PyYAML==5.3.1",
         "tblib==1.3.2",
         "typing-extensions==3.7.4",
     ],
