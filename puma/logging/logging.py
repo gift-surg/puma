@@ -9,8 +9,6 @@ from logging import LogRecord
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Union, cast, no_type_check
 
-import yaml
-
 from puma.buffer.implementation.managed_queues import ManagedProcessQueue
 from puma.helpers.class_name import get_class_fully_qualified_name, get_fully_qualified_name
 from puma.helpers.string import safe_str
@@ -276,9 +274,11 @@ class Logging:
 
     @classmethod
     def init_logging_impl(cls, config_filename: str) -> None:
+        from yaml import safe_load
+
         config_path = cls._find_config_file(config_filename)
         with config_path.open('rt') as f:
-            config = yaml.safe_load(f.read())
+            config = safe_load(f.read())
         cls._apply_dictionary_config(config)
 
     @classmethod
